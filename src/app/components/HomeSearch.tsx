@@ -9,7 +9,7 @@ const HomeSearch = () => {
     const [input, setInput] = useState("")
     const [randomSearchLoading, setRandomSearchLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
         if(!input.trim()) return;  
         router.push(`/search/web?searchTerm=${input}`);  
