@@ -4,15 +4,17 @@ import WebSearchResults from '@/app/components/WebSearchResults'
 
 const WebSearchPage = async ( {searchParams}: any ) => {
 
-  await new Promise((resolve) => setTimeout(resolve, 5000))
-  const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLE_API_KEY}&cx=${process.env.CONTEXT_API_KEY}&q=${searchParams.searchTerm}`)
+  const startIndex = searchParams.start || "1";
+
+  // await new Promise((resolve) => setTimeout(resolve, 5000))
+  const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${process.env.GOOGLE_API_KEY}&cx=${process.env.CONTEXT_API_KEY}&q=${searchParams.searchTerm}&start=${startIndex}`)
   const res = await response.json()
 
   if(!response.ok) {
     throw new Error("Something went wrong!")
   }
   const results = res.items
-  // console.log(results)
+  console.log(results)
 
   if (!results) {
     return (
